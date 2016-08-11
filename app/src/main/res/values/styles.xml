@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="gangamStyle">
+        <item name="android:textColor">#fff</item>
+        <item name="android:background">#444</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">false</item>
+
+    </style>
+    <style name="gangamStyle2">
+        <item name="android:textColor">#fff</item>
+        <item name="android:background">#444</item>
+        <item name="android:textSize">30sp</item>
+
+    </style>
+
+    <style name="gangamStyle3">
+        <item name="android:textColor">#fff</item>
+        <item name="android:background">#666</item>
+        <item name="android:textSize">30sp</item>
+
+    </style>
+
+</resources>
