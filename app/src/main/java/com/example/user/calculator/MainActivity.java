@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,14 +22,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This function is called on clicking of "=" button, it will calculate the result and set that result into ansTxt box
+     *
+     * for OnClick functions we have to pass "View view" to get the details about clicked button
+     *
+     * @param view
+     */
     public void calculateResult(View view) {
-        TextView ansTxt = (TextView) findViewById(R.id.anstxt);
+        //Create a object of TextView to hold the ansTxt
+        EditText ansTxt = (EditText) findViewById(R.id.anstxt);
+
+        /**
+         * show a notification message to display the contents of ansTxt, Toast.makeText() will require 3 arguments
+         * One for context, second one for actual message shown to the user, and 3rd one for duration
+         * After writing this we have to add show(), to show this message to user.
+         */
         Toast.makeText(this, "text message is " + ansTxt.getText().toString(), Toast.LENGTH_SHORT).show();
+
+        //get the data of ansTxt
         String data = ansTxt.getText().toString();
+
+        //initialize a int variable to hold the final answer
         int finalAns = 0;
+
+        //create a char array to store ansTxt in array format
         char[] values = new char[data.length()];
+
+        //initialize a character to hold the operand
         char operand = 0;
-        boolean operand_found = false;
+
+        //initialize a boolean variable to notify whether operator found or not
+        boolean operator_found = false;
         String value1= null;
         String value2 = null;
         for(int i=0;i<data.length();i++) {
@@ -36,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
             values[i] = ansTxt.getText().charAt(i);
             Log.d("values", String.valueOf(values[i]));
-            if(!operand_found){
+            if(!operator_found){
                 if (ansTxt.getText().charAt(i) == '+'
                         || ansTxt.getText().charAt(i) == '-'
                         || ansTxt.getText().charAt(i) == '/'
@@ -46,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
                         )
                 {
                     operand = ansTxt.getText().charAt(i);
-                    Log.d("operator found", String.valueOf(operand_found));
-                    operand_found = true;
+                    Log.d("operator found", String.valueOf(operator_found));
+                    operator_found = true;
 
                 }
                 else
                 {
-                    operand_found = false;
+                    operator_found = false;
                     if(value1 == null)
                     {
                         value1 = String.valueOf(ansTxt.getText().charAt(i));
@@ -74,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 {
 
                     operand = ansTxt.getText().charAt(i);
-                    operand_found = false;
+                    operator_found = false;
 
                 }
                 else
@@ -98,9 +123,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ansTxt.setText(String.valueOf(finalAns));
+        ansTxt.setSelection(ansTxt.getText().length());
         Log.d("values",values.toString());
 
     }
+
 
     public int calculate(String value1,String value2,char operand)
     {
@@ -136,11 +163,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void addToTextBox(View view) {
 
-        TextView ansTxt = (TextView) findViewById(R.id.anstxt);
+        EditText ansTxt = (EditText) findViewById(R.id.anstxt);
         String previousTxt = String.valueOf(ansTxt.getText());
         if(view.getId() == R.id.sevenBtn)
         {
             ansTxt.setText(previousTxt+7);
+            ansTxt.setSelected(true);
         }
         if(view.getId() == R.id.eightBtn)
         {
@@ -198,6 +226,12 @@ public class MainActivity extends AppCompatActivity {
         {
             ansTxt.setText(previousTxt+'.');
         }
+        if(view.getId() == R.id.sinBtn)
+        {
+            ansTxt.setText(previousTxt);
+        }
+        //TextView et = (TextView) findViewById(R.id.anstxt);
+        ansTxt.setSelection(ansTxt.getText().length());
         //Log.d("id is ",String.valueOf(view.get()));
         //ansTxt.setText();
     }
